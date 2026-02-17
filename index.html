@@ -194,19 +194,25 @@
         </div>
 
         <!-- Contact Form (Direct to Email) -->
-        <div class="w-full glass-card p-6 rounded-2xl">
+        <div class="w-full glass-card p-6 rounded-2xl relative">
             <h3 class="font-bold text-lg mb-1 text-center">Want to work with me?</h3>
             <p class="text-sm text-gray-400 mb-4 text-center">For collaborations and business inquiries.</p>
             
-            <form action="https://formsubmit.co/Halinakelvin369@gmail.com" method="POST" class="space-y-3">
-                <!-- HoneyPot to prevent spam -->
-                <input type="text" name="_honey" style="display:none">
-                
-                <!-- Disable Captcha for cleaner look (optional, remove if you get spam) -->
-                <input type="hidden" name="_captcha" value="false">
+            <!-- Success Message Notification (Hidden by default) -->
+            <div id="successMessage" class="hidden absolute inset-0 bg-brand-card rounded-2xl z-20 flex flex-col items-center justify-center text-center p-6 animate-pulse-slow">
+                <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(34,197,94,0.5)]">
+                    <i class="fas fa-check text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Submit Done!</h3>
+                <p class="text-gray-400 text-sm">Thanks for reaching out.</p>
+                <button onclick="document.getElementById('successMessage').classList.add('hidden')" class="mt-4 px-6 py-2 bg-gray-700 rounded-full text-sm hover:bg-gray-600 transition-colors text-white">Close</button>
+            </div>
 
-                <!-- Redirect to your site after submission (Optional, currently reloads page) -->
-                <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html"> -->
+            <!-- Form modified for AJAX to hide email redirect -->
+            <form id="contactForm" onsubmit="sendEmail(event)" class="space-y-3">
+                <!-- Only used for FormSubmit config, actual submission handled by JS -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
 
                 <div>
                     <input type="text" name="name" placeholder="Your Name" required
@@ -221,9 +227,9 @@
                         class="w-full p-3 bg-brand-dark border border-gray-700 rounded-lg focus:outline-none focus:border-brand-purple text-sm text-white transition-colors resize-none"></textarea>
                 </div>
                 
-                <button type="submit" 
-                    class="w-full py-3 bg-gradient-to-r from-brand-purple to-brand-pink rounded-lg font-bold text-white shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] transition-all duration-200">
-                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                <button type="submit" id="submitBtn"
+                    class="w-full py-3 bg-gradient-to-r from-brand-purple to-brand-pink rounded-lg font-bold text-white shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] transition-all duration-200 flex items-center justify-center gap-2">
+                    <span>Send Message</span> <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
         </div>
@@ -236,5 +242,44 @@
 
     </main>
 
+    <script>
+        // Form Submission Logic using AJAX to prevent page redirect
+        function sendEmail(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('contactForm');
+            const btn = document.getElementById('submitBtn');
+            const btnContent = btn.innerHTML; // Save original button content
+            
+            // Show loading state
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+
+            const formData = new FormData(form);
+
+            // Send to FormSubmit via AJAX
+            fetch("https://formsubmit.co/ajax/Halinakelvin369@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Show success message overlay
+                document.getElementById('successMessage').classList.remove('hidden');
+                form.reset(); // Clear the form
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Something went wrong. Please check your internet connection.");
+            })
+            .finally(() => {
+                // Restore button state
+                btn.innerHTML = btnContent;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed');
+            });
+        }
+    </script>
 </body>
 </html>
