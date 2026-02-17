@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow With Haider - Official Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#121212',
+                            card: '#1E1E1E',
+                            purple: '#A970FF',
+                            accent: '#00F2EA', // TikTok Cyan-ish
+                            pink: '#FF0050'    // TikTok Pink
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(169, 112, 255, 0.3);
+        }
+        /* Hide scrollbar for textarea */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #333;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center overflow-x-hidden">
+
+    <!-- Background Glow Effects -->
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-brand-purple rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-brand-accent rounded-full mix-blend-screen filter blur-[100px] opacity-10 animate-pulse-slow" style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-2xl px-4 py-12 flex flex-col items-center">
+
+        <!-- Profile Section -->
+        <div class="text-center mb-8 animate-float">
+            <div class="relative w-32 h-32 mx-auto mb-4">
+                <!-- Profile Image Placeholder -->
+                <div class="w-full h-full rounded-2xl border-4 border-brand-purple overflow-hidden relative shadow-xl bg-white flex items-center justify-center">
+                    <!-- Updated Image Source: Looks for logo.png -->
+                    <!-- Code tries to load logo.png, if not found, shows the GWH monogram below -->
+                    <img src="logo.png" 
+                         alt="Grow With Haider" 
+                         class="w-full h-full object-contain p-1" 
+                         id="profileImage"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    
+                    <!-- Fallback if image is missing (Shows GWH Monogram) -->
+                    <div class="hidden absolute inset-0 bg-brand-card flex-col items-center justify-center text-white">
+                        <span class="text-4xl font-bold bg-gradient-to-r from-brand-purple to-brand-accent bg-clip-text text-transparent">GWH</span>
+                    </div>
+                </div>
+                <!-- Verification Badge (Blue Tick) -->
+                <div class="absolute -bottom-2 -right-2 bg-blue-500 text-white rounded-full p-1 w-8 h-8 flex items-center justify-center border-4 border-[#121212] z-10 shadow-lg">
+                    <i class="fas fa-check text-xs"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-3xl font-bold mb-1">Grow With Haider</h1>
+            <p class="text-brand-purple font-medium mb-3">@growwithhaiderz</p>
+            <p class="text-gray-400 text-sm max-w-md mx-auto leading-relaxed">
+                🚀 Helping you grow on Social Media <br>
+                🤖 AI Tools & Tech Tips <br>
+                ✨ Video Editing Tutorials
+            </p>
+        </div>
+
+        <!-- Primary Actions -->
+        <div class="w-full space-y-4 mb-12">
+            <a href="https://www.tiktok.com/@growwithhaiderz" target="_blank" class="social-btn group flex items-center justify-between w-full p-4 bg-white text-black rounded-xl transition-all duration-300 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-pink opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                <div class="flex items-center gap-4 relative z-10">
+                    <div class="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center">
+                        <i class="fab fa-tiktok text-xl"></i>
+                    </div>
+                    <span class="font-bold text-lg">Follow on TikTok</span>
+                </div>
+                <i class="fas fa-arrow-right relative z-10 opacity-50 group-hover:opacity-100 transition-all group-hover:translate-x-1"></i>
+            </a>
+
+            <a href="https://www.youtube.com/@growwithhaiderz" target="_blank" class="social-btn flex items-center justify-between w-full p-4 glass-card text-white rounded-xl transition-all duration-300 hover:bg-brand-card">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </div>
+                    <span class="font-semibold">Subscribe on YouTube</span>
+                </div>
+                <i class="fas fa-external-link-alt opacity-50"></i>
+            </a>
+            
+             <a href="#" class="social-btn flex items-center justify-between w-full p-4 glass-card text-white rounded-xl transition-all duration-300 hover:bg-brand-card">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </div>
+                    <span class="font-semibold">Instagram</span>
+                </div>
+                <i class="fas fa-external-link-alt opacity-50"></i>
+            </a>
+
+            <a href="https://whatsapp.com/channel/0029VasrAO6FCCoVHq28Gp1o" target="_blank" class="social-btn flex items-center justify-between w-full p-4 glass-card text-white rounded-xl transition-all duration-300 hover:bg-brand-card">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </div>
+                    <span class="font-semibold">Join WhatsApp Channel</span>
+                </div>
+                <i class="fas fa-external-link-alt opacity-50"></i>
+            </a>
+        </div>
+
+        <!-- Featured Content / Latest Videos -->
+        <div class="w-full mb-8">
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">
+                <i class="fas fa-fire text-brand-pink"></i> Popular Videos
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Video Card 1 -->
+                <a href="https://www.tiktok.com/@growwithhaiderz/video/7451205275547225376?is_from_webapp=1&sender_device=pc&web_id=7591516814745765377" target="_blank" class="glass-card p-3 rounded-xl hover:bg-brand-card transition-colors cursor-pointer group block">
+                    <div class="relative w-full h-32 bg-gray-800 rounded-lg mb-3 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all">
+                             <i class="fab fa-tiktok text-4xl text-white opacity-80 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-gray-500 text-xs">
+                           VIDEO #1
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-sm mb-1 truncate text-white">Watch Viral Video</h3>
+                    <div class="flex justify-between items-center text-xs text-brand-accent">
+                        <span>Click to Watch</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+
+                <!-- Video Card 2 -->
+                <a href="https://www.tiktok.com/@growwithhaiderz/video/7463524023763291425" target="_blank" class="glass-card p-3 rounded-xl hover:bg-brand-card transition-colors cursor-pointer group block">
+                    <div class="relative w-full h-32 bg-gray-800 rounded-lg mb-3 overflow-hidden">
+                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-20 transition-all">
+                             <i class="fab fa-tiktok text-4xl text-white opacity-80 group-hover:scale-110 transition-transform"></i>
+                        </div>
+                        <div class="w-full h-full bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-gray-500 text-xs">
+                           VIDEO #2
+                        </div>
+                    </div>
+                    <h3 class="font-semibold text-sm mb-1 truncate text-white">Watch Latest Video</h3>
+                    <div class="flex justify-between items-center text-xs text-brand-accent">
+                        <span>Click to Watch</span>
+                        <i class="fas fa-external-link-alt"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Form (Direct to Email) -->
+        <div class="w-full glass-card p-6 rounded-2xl">
+            <h3 class="font-bold text-lg mb-1 text-center">Want to work with me?</h3>
+            <p class="text-sm text-gray-400 mb-4 text-center">For collaborations and business inquiries.</p>
+            
+            <form action="https://formsubmit.co/Halinakelvin369@gmail.com" method="POST" class="space-y-3">
+                <!-- HoneyPot to prevent spam -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <!-- Disable Captcha for cleaner look (optional, remove if you get spam) -->
+                <input type="hidden" name="_captcha" value="false">
+
+                <!-- Redirect to your site after submission (Optional, currently reloads page) -->
+                <!-- <input type="hidden" name="_next" value="https://yourwebsite.com/thanks.html"> -->
+
+                <div>
+                    <input type="text" name="name" placeholder="Your Name" required
+                        class="w-full p-3 bg-brand-dark border border-gray-700 rounded-lg focus:outline-none focus:border-brand-purple text-sm text-white transition-colors">
+                </div>
+                <div>
+                    <input type="email" name="email" placeholder="Your Email" required
+                        class="w-full p-3 bg-brand-dark border border-gray-700 rounded-lg focus:outline-none focus:border-brand-purple text-sm text-white transition-colors">
+                </div>
+                <div>
+                    <textarea name="message" rows="3" placeholder="Write your message..." required
+                        class="w-full p-3 bg-brand-dark border border-gray-700 rounded-lg focus:outline-none focus:border-brand-purple text-sm text-white transition-colors resize-none"></textarea>
+                </div>
+                
+                <button type="submit" 
+                    class="w-full py-3 bg-gradient-to-r from-brand-purple to-brand-pink rounded-lg font-bold text-white shadow-lg hover:shadow-purple-500/30 hover:scale-[1.02] transition-all duration-200">
+                    Send Message <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-600 text-sm mb-4">
+            <p>&copy; 2025 Grow With Haider. All rights reserved.</p>
+            <p class="text-xs mt-1">Built for Creators</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
